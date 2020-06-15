@@ -36,6 +36,7 @@ public class LancamentoRecource {
 	@Autowired
 	private LancamentoService lancamentoService;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@GetMapping("{id}")
 	public ResponseEntity obterLancamento( @PathVariable("id") Long id ) {
 		return lancamentoService.obterPorId(id)
@@ -43,6 +44,7 @@ public class LancamentoRecource {
 					.orElseGet( () -> new ResponseEntity(HttpStatus.NOT_FOUND) );
 	}
 
+	@SuppressWarnings("rawtypes")
 	@PostMapping
 	public ResponseEntity salvar(@RequestBody LancamentoDTO dto) {
 		try {
@@ -54,6 +56,7 @@ public class LancamentoRecource {
 		}
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PutMapping("{id}")
 	public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody LancamentoDTO dto) {
 		return lancamentoService.obterPorId(id).map(entity -> {
@@ -68,6 +71,7 @@ public class LancamentoRecource {
 		}).orElseGet(() -> new ResponseEntity("Lancamento não encontrado na base de Dados.", HttpStatus.BAD_REQUEST));
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@DeleteMapping("{id}")
 	public ResponseEntity deletar(@PathVariable("id") Long id) {
 		return lancamentoService.obterPorId(id).map(entidade -> {
@@ -76,6 +80,7 @@ public class LancamentoRecource {
 		}).orElseGet(() -> new ResponseEntity("Lancamento não encontrado na base de Dados.", HttpStatus.BAD_REQUEST));
 	}
 
+	@SuppressWarnings("rawtypes")
 	@GetMapping
 	public ResponseEntity buscar(@RequestParam(value = "descricao", required = false) String descricao,
 			@RequestParam(value = "mes", required = false) Integer mes,
@@ -98,6 +103,7 @@ public class LancamentoRecource {
 		return ResponseEntity.ok(lancamentos);
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PutMapping("{id}/atualiza-status")
 	public ResponseEntity atualizarStatus(@PathVariable("id") Long id, @RequestBody AtualizaStatusDTO dto) {
 		return lancamentoService.obterPorId(id).map(entity -> {

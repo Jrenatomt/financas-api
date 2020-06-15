@@ -49,9 +49,11 @@ public class LancamentoServiceImpl implements LancamentoService{
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly = true)
 	public List<Lancamento> buscar(Lancamento lancamentoFiltro) {
+		@SuppressWarnings("rawtypes")
 		Example example = Example.of(lancamentoFiltro,
 				ExampleMatcher.matching()
 				.withIgnoreCase()
